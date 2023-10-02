@@ -69,43 +69,62 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 
 
 ### QUERY:
-
+```sql
+create view details as select ename from emp where sal>(select sal from emp where empno=7566);
+```
 
 ### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/4fed1c11-8c37-45ee-949c-c0fbcc33dffd)
 
 ### Q2) List the ename,job,sal of the employee who get minimum salary in the company.
 
 ### QUERY:
-
+```sql
+create view minimum as select ename,job,sal from emp where sal=(select min(sal) from emp);
+```
 
 ### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/56fa6223-60a1-46a8-afea-5a2791e42df2)
 
 ### Q3) List ename, job of the employees who work in deptno 10 and his/her job is any one of the job in the department ‘SALES’.
 
 ### QUERY:
-
+```sql
+select ename,job from emp where deptno=10 and job='salesman';
+```
 
 ### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/108e96dd-1c14-42ef-b4ce-7d5174ea9dc6)
 
 
 ### Q4) Create a view empv5 (for the table emp) that contains empno, ename, job of the employees who work in dept 10.
 
 ### QUERY:
-
+```sql
+ create view empv5 as select empno,ename,job from emp where deptno=10;
+```
 
 ### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/855cec24-8ecf-4f35-830b-1da02d2341ec)
+
 
 ### Q5) Create a view with column aliases empv30 that contains empno, ename, sal of the employees who work in dept 30. Also display the contents of the view.
 
 ### QUERY:
-
+```sql
+ create view empv30 as select empno,ename,sal from emp where deptno=30;
+```
 
 ### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/8a2bf240-b245-40f5-8946-38355606e551)
+
 
 ### Q6) Update the view empv5 by increasing 10% salary of the employees who work as ‘CLERK’. Also confirm the modifications in emp table
 
 ### QUERY:
+```sql
 
+```
 
 ### OUTPUT:
 
@@ -140,28 +159,53 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson
 ### Q7) Write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
 
 ### QUERY:
-
+```sql
+select salesman1.name as "salesman" , customer1.cust_name as "customer name", salesman1.city as "city" from salesman1 inner join customer1 on salesman1.city=customer1.city;
+```
 
 ### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/81d22c8d-521e-470a-912e-0031bfa5ce51)
+
 
 ### Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
 
 
 ### QUERY:
-
+```sql
+SELECT customer1.cust_name AS "Customer Name",customer1.city AS "Customer City",salesman1.name AS "Salesman",salesman1.commission AS "Commission" FROM salesman1 INNER JOIN customer1 ON salesman.salesman_id = customer1.salesman_id WHERE salesman1.commission  > 0.13;
+```
 
 ### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/3d995790-3e34-43d5-876f-8160bb4ff874)
 
 ### Q9) Perform Natural join on both tables
 
 ### QUERY:
+```sql
+select * from customer1 natural join salesman1;
 
+select * from salesman1 natural join customer1;
+```
 
 ### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/d2d0dcb4-49a6-4082-a840-49b895d9a7c6)
 
 ### Q10) Perform Left and right join on both tables
-
+#### right join
 ### QUERY:
+```sql
+select * from salesman1 right join customer1 on customer1.customer_id=salesman1.salesman_id;
+```
+### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/dd7885fc-89aa-4666-b02f-e9719b061e98)
 
+#### left join
+### QUERY:
+```sql
+select * from salesman1 left join customer1 on customer1.customer_id=salesman1.salesman_id;
+```
 
 ### OUTPUT:
+![image](https://github.com/ShanmathiShanmugam/EX-3-SubQueries-Views-and-Joins/assets/121243595/c807e40c-281d-4ad3-aede-bfa733c268b8)
+
+
